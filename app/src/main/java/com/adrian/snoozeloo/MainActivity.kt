@@ -12,35 +12,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.adrian.snoozeloo.ui.theme.SnoozelooTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val viewModel by viewModels<AlarmViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)  
+
         setContent {
             SnoozelooTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+                val navController = rememberNavController()
+                NavHost(navController = navController, startDestination = "alarm_list_screen") {
+                    composable("alarm_list_screen")  
+                    {
+                        AlarmListScreen(viewModel = viewModel)
+                    }
+                    // Add other screens here as needed
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SnoozelooTheme {
-        Greeting("Android")
     }
 }

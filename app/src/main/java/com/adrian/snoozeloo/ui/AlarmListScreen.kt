@@ -9,6 +9,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.adrian.snoozeloo.domain.viewmodel.AlarmViewModel
@@ -18,9 +19,13 @@ import com.adrian.snoozeloo.ui.items.AlarmListItem
 fun AlarmListScreen(viewModel: AlarmViewModel) {
     val alarms = viewModel.alarms.collectAsState()
 
+
     LazyColumn {
-        items(alarms.value) { alarm ->
-            AlarmListItem(alarm)
+        items(alarms.value.size) { index ->
+            AlarmListItem(alarm = alarms.value[index], onToggle = { updatedAlarm ->
+                // Handle toggle action here, e.g., update the alarm in the ViewModel
+                viewModel.toggleAlarm(updatedAlarm)
+            })
         }
     }
 

@@ -16,18 +16,17 @@ abstract class AlarmDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: AlarmDatabase? = null
-    }
 
-    fun getInstance(context: Context): AlarmDatabase {
-        return INSTANCE ?: synchronized(this) {
-            val instance = Room.databaseBuilder(
-                context.applicationContext,
-                AlarmDatabase::class.java,
-                "alarm_database"
-            ).build()
-            INSTANCE = instance
-            instance
+        fun getInstance(context: Context): AlarmDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AlarmDatabase::class.java,
+                    "alarm_database"
+                ).build()
+                INSTANCE = instance
+                instance
+            }
         }
     }
 }
-

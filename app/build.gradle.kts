@@ -43,6 +43,7 @@ android {
 dependencies {
     // Room dependencies
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.common)
     kapt(libs.androidx.room.compiler) // Correct way to use kapt in .kts
     implementation(libs.androidx.room.ktx)
 

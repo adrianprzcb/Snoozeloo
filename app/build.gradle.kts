@@ -50,7 +50,7 @@ dependencies {
     // Other dependencies
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-
+    implementation(libs.gson)
     // Compose and testing dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

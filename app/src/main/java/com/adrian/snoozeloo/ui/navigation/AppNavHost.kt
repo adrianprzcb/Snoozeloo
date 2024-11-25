@@ -4,15 +4,20 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.adrian.snoozeloo.viewmodel.AlarmViewModel
 
 @Composable
-fun AppNavHost(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = "alarmList") {
-        composable("alarmList") {
-          //  AlarmListScreen(navController)
+fun AppNavHost(
+    navController: NavHostController,
+    alarmViewModel: AlarmViewModel
+) {
+    NavHost(
+        navController = navController,
+        startDestination = "alarm_list"
+    ) {
+        composable("alarm_list") {
+       //     AlarmListScreen(alarmViewModel = alarmViewModel)
         }
-        composable("alarmDetail") {
-         //   AlarmDetailScreen(navController)
-        }
+        // Add other screens here...
     }
 }

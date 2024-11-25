@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.adrian.snoozeloo"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.adrian.snoozeloo"

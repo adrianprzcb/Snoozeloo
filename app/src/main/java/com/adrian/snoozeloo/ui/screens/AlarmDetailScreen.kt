@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
 import com.adrian.snoozeloo.data.model.Alarm
 import com.adrian.snoozeloo.data.model.AlarmData
+import com.google.android.material.chip.Chip
 
 @Composable
 fun AlarmDetailScreen(
@@ -77,6 +79,22 @@ fun AlarmDetailScreen(
         // Button to set alarm name
         Button(onClick = { isNameDialogVisible = true }) {
             Text(text = if (alarmName.isNotEmpty()) alarmName else "Set Alarm Name")
+        }
+
+
+        //Chips for weekdays selection
+        LazyRow (
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            val days = listOf("Mon" , "Tue" , "Thu", "Fri", "Sat", "Sun")
+            items(days) { day ->
+
+                Chip(
+
+                    onClick
+                )
+            }
+
         }
 
     }

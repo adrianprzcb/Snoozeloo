@@ -17,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adrian.snoozeloo.data.model.Alarm
+import java.time.LocalTime
+import java.time.temporal.ChronoUnit
 
 @Composable
 fun AlarmList (
@@ -72,4 +74,17 @@ fun AlarmItem(
         }
 
     }
+}
+
+
+fun calculateNextOccurrence(alarmTime: LocalTime, currentTime: LocalTime): String {
+    val duration = if (alarmTime.isAfter(currentTime)) {
+        ChronoUnit.MINUTES.between(currentTime, alarmTime)
+    } else {
+        ChronoUnit.MINUTES.between(currentTime, alarmTime.plusDays(1))
+    }
+
+    val hours = duration / 60
+    val minutes = duration % 60
+    return "${hours}h ${minutes}min"
 }

@@ -27,6 +27,9 @@ fun AlarmDetailScreen(
     alarm: Alarm?,
     onSaveAlarm: (AlarmData) -> Unit,
     navigateToRingtoneSettings: () -> Unit){
+
+    val isNewAlarm = alarm == null
+
     var hours by remember { mutableStateOf("") }
     var minutes by remember { mutableStateOf("") }
     var alarmName by remember { mutableStateOf("") }

@@ -43,7 +43,10 @@ fun AlarmListScreen(
                 EmptyState()
             }else {
                 //List of Alarms
-                AlarmList()
+                AlarmList(alarms = alarms.value,
+                    onToggle = {alarm ->
+                        alarmViewModel.saveAlarm(alarm.copy(isEnabled = !alarm.isEnabled))
+                    })
             }
 
         }

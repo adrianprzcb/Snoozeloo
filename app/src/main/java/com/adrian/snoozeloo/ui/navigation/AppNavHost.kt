@@ -22,6 +22,9 @@ fun AppNavHost(
              onAddAlarm = {navController.navigate("alarm_detail")}
          )
         }
-        // Add other screens here...
+        composable("alarm_details") {
+
+        }
+
     }
 }

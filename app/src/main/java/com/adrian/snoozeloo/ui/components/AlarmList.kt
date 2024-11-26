@@ -67,7 +67,7 @@ fun AlarmItem(
                     style = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = "Next: ${alarm.nextOccurrence}", //Format this dynamically
+                    text = "Next: $nextOccurrence", //Format this dynamically
                     style = MaterialTheme.typography.bodyMedium
                 )
             }

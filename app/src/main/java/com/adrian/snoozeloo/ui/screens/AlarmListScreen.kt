@@ -42,7 +42,7 @@ fun AlarmListScreen(
                 EmptyState()
             }else {
                 //List of Alarms
-               // AlarmList()
+               AlarmList()
             }
 
         }

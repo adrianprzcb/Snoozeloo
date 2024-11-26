@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -62,6 +63,15 @@ fun AlarmDetailScreen(
                 label = { Text("Minutes") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
+        }
+
+        // Display next trigger time
+        Text("Next alarm will trigger in:  $nextTriggerTime")
+
+
+        // Button to set alarm name
+        Button(onClick = { isNameDialogVisible = true }) {
+            Text(text = if (alarmName.isNotEmpty()) alarmName else "Set Alarm Name")
         }
 
     }

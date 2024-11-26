@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import com.adrian.snoozeloo.data.model.AlarmData
 
 @Composable
@@ -20,6 +21,12 @@ fun AlarmDetailScreen(
     var volume by remember { mutableStateOf(50f) }
     var vibrate by remember { mutableStateOf(false) }
     var nextTriggerTime by remember { mutableStateOf("N/A") }
+
+
+    val isTimeValid = validateTime(hours, minutes)
+    val context = LocalContext.current
+
+
 
 }
 

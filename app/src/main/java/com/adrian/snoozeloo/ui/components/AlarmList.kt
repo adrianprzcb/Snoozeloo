@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adrian.snoozeloo.data.model.Alarm
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
 @Composable
@@ -45,8 +46,7 @@ fun AlarmItem(
 ) {
 
     val currentTime = LocalTime.now() // Get the current time
-    val alarmTime = LocalTime.of(alarm.time / 60, alarm.time % 60) // Convert alarm time to LocalTime
-    val nextOccurrence = calculateNextOccurrence(alarmTime, currentTime)
+    val nextOccurrence = calculateNextOccurrence(alarm.time, currentTime)
     Card (
         modifier = Modifier
             .fillMaxWidth()
@@ -81,11 +81,14 @@ fun AlarmItem(
 }
 
 
-fun calculateNextOccurrence(alarmTime: LocalTime, currentTime: LocalTime): String {
+fun calculateNextOccurrence(alarmTimeString: String, currentTime: LocalTime): String {
+    val formatter = DateTimeFormatter.ofPattern("HH:mm")
+    val alarmTime = LocalTime.parse(alarmTimeString, formatter) // Parse the string into LocalTime
+
     val duration = if (alarmTime.isAfter(currentTime)) {
         ChronoUnit.MINUTES.between(currentTime, alarmTime)
     } else {
-        ChronoUnit.MINUTES.between(currentTime, alarmTime.plusDays(1))
+        ChronoUnit.MINUTES.between(currentTime, alarmTime.plusHours(24))
     }
 
     val hours = duration / 60

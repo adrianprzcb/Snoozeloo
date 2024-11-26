@@ -42,4 +42,12 @@ class AlarmViewModel (private val repository: AlarmRepository): ViewModel(){
     }
 
 
+    //Get a specific alarm by ID
+    fun getAlarmById(alarmId: Int): StateFlow<Alarm?> {
+        return repository.allAlarms
+            .map { alarms -> alarms.find { it.id == alarmId}}
+            .stateIn(viewModelScope, SharingStarted.Lazily, null)
+    }
+
+
 }

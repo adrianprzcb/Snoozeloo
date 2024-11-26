@@ -1,6 +1,7 @@
 package com.adrian.snoozeloo.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -37,10 +38,11 @@ fun AppNavHost(
             )
         ) { backStackEntry ->
             val alarmId = backStackEntry.arguments?.getString("alarmId")
+            val alarm = alarmViewModel.getAlarmById(alarmId ?: -1).collectAsState()
             AlarmDetailScreen(
-                alarm = alarmId?.let { alarmViewModel.getAlarmById(it) },
-                onSaveAlarm = { alarm ->
-                    alarmViewModel.saveAlarm(alarm)
+                alarm = alarm,
+                onSaveAlarm = { alarmData ->
+                    alarmViewModel.saveAlarm(alarmData)
                     navController.popBackStack() // Navigate back to the list
                 },
                 navigateToRingtoneSettings = {

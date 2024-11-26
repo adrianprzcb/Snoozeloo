@@ -19,10 +19,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
+import com.adrian.snoozeloo.data.model.Alarm
 import com.adrian.snoozeloo.data.model.AlarmData
 
 @Composable
 fun AlarmDetailScreen(
+    alarm: Alarm,
     onSaveAlarm: (AlarmData) -> Unit,
     navigateToRingtoneSettings: () -> Unit){
     var hours by remember { mutableStateOf("") }

@@ -43,6 +43,10 @@ fun AlarmItem(
     alarm: Alarm,
     onToggle: (Alarm) -> Unit
 ) {
+
+    val currentTime = LocalTime.now() // Get the current time
+    val alarmTime = LocalTime.of(alarm.time / 60, alarm.time % 60) // Convert alarm time to LocalTime
+    val nextOccurrence = calculateNextOccurrence(alarmTime, currentTime)
     Card (
         modifier = Modifier
             .fillMaxWidth()

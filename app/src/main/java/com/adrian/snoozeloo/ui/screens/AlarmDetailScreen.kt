@@ -14,8 +14,12 @@ fun AlarmDetailScreen(
     var hours by remember { mutableStateOf("") }
     var minutes by remember { mutableStateOf("") }
     var alarmName by remember { mutableStateOf("") }
-    var isNameDialogVisible by remember { mutableStateOf("") }
-
+    var isNameDialogVisible by remember { mutableStateOf(false) }
+    var selectedDays by remember { mutableStateOf(listOf<String>()) }
+    var ringtone by remember { mutableStateOf("Default Ringtone") }
+    var volume by remember { mutableStateOf(50f) }
+    var vibrate by remember { mutableStateOf(false) }
+    var nextTriggerTime by remember { mutableStateOf("N/A") }
 
 }
 

@@ -24,7 +24,10 @@ fun AlarmList (
         contentPadding = PaddingValues()
     ){
         items(alarms.size){ index ->
-            AlarmItem()
+            AlarmItem(
+                alarm = alarms[index],
+                onToggle = onToggle
+            )
         }
     }
 }

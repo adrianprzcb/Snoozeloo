@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
 import com.adrian.snoozeloo.data.model.Alarm
 import com.adrian.snoozeloo.data.model.AlarmData
-import com.google.android.material.chip.Chip
 
 @Composable
 fun AlarmDetailScreen(
@@ -90,12 +89,23 @@ fun AlarmDetailScreen(
             items(days) { day ->
 
                 Chip(
-
-                    onClick
-                )
+                    onClick = {
+                        selectedDays = if (selectedDays.contains(day)) {
+                            selectedDays - day
+                        } else {
+                            selectedDays + day
+                        }
+                    },
+                    selected = selectedDays.contains(day)
+                ) {
+                    Text(day)
+                }
             }
-
         }
+
+
+
+
 
     }
 

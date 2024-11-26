@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import com.adrian.snoozeloo.data.model.Alarm
+import com.adrian.snoozeloo.ui.components.AlarmList
 import com.adrian.snoozeloo.ui.components.EmptyState
 import com.adrian.snoozeloo.viewmodel.AlarmViewModel
 
@@ -42,7 +43,7 @@ fun AlarmListScreen(
                 EmptyState()
             }else {
                 //List of Alarms
-               AlarmList()
+                AlarmList()
             }
 
         }

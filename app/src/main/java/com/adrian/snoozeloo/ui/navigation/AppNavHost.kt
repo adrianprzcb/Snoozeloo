@@ -22,7 +22,7 @@ fun AppNavHost(
              onAddAlarm = {navController.navigate("alarm_detail")}
          )
         }
-        composable("alarm_details") {
+        composable("alarm_detail") {
 
         }
 

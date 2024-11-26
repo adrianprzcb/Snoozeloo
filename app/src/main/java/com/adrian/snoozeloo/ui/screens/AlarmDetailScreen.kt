@@ -1,12 +1,19 @@
 package com.adrian.snoozeloo.ui.screens
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import com.adrian.snoozeloo.data.model.AlarmData
 
 @Composable
 fun AlarmDetailScreen(
     onSaveAlarm: (AlarmData) -> Unit,
     navigateToRingtoneSettings: () -> Unit){
+    var hours by remember { mutableStateOf("") }
+    var minutes by remember { mutableStateOf("") }
+    var alarmName by remember { mutableStateOf("") }
 
 }
 

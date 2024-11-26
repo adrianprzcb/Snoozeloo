@@ -14,6 +14,8 @@ fun AlarmDetailScreen(
     var hours by remember { mutableStateOf("") }
     var minutes by remember { mutableStateOf("") }
     var alarmName by remember { mutableStateOf("") }
+    var isNameDialogVisible by remember { mutableStateOf("") }
+
 
 }
 

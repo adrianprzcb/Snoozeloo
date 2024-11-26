@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 AppNavHost(
                     navController = navController,
-                //    alarmViewModel = viewModel // Pass ViewModel to navigation
+                    alarmViewModel = viewModel // Pass ViewModel to navigation
                 )
             }
         }

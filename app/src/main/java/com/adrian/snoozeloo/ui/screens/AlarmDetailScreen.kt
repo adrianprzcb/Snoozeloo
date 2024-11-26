@@ -24,7 +24,7 @@ import com.adrian.snoozeloo.data.model.AlarmData
 
 @Composable
 fun AlarmDetailScreen(
-    alarm: Alarm,
+    alarm: Alarm?,
     onSaveAlarm: (AlarmData) -> Unit,
     navigateToRingtoneSettings: () -> Unit){
     var hours by remember { mutableStateOf("") }

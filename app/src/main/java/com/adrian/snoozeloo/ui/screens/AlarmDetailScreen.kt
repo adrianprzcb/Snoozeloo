@@ -34,7 +34,7 @@ import com.adrian.snoozeloo.ui.components.AlarmNameDialog
 
 @Composable
 fun AlarmDetailScreen(
-    alarm: Alarm?,
+    alarm: AlarmData?,
     onSaveAlarm: (AlarmData) -> Unit,
     navigateToRingtoneSettings: () -> Unit){
 

@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adrian.snoozeloo.data.model.Alarm
 import com.adrian.snoozeloo.data.repository.AlarmRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -19,9 +21,13 @@ class AlarmViewModel (private val repository: AlarmRepository): ViewModel(){
 
 
     //Add or update an alarm
-    fun saveAlarm(alarm: Alarm){
+    fun saveAlarm(alarm: Alarm) {
         viewModelScope.launch {
-            repository.insertAlarm(alarm)
+            if (alarm.id == 0) {
+                repository.insertAlarm(alarm)
+            } else {
+              //  repository.updateAlarm(alarm)
+            }
         }
     }
 
@@ -43,10 +49,12 @@ class AlarmViewModel (private val repository: AlarmRepository): ViewModel(){
 
 
     //Get a specific alarm by ID
-    fun getAlarmById(alarmId: Int): StateFlow<Alarm?> {
-        return repository.allAlarms
-            .map { alarms -> alarms.find { it.id == alarmId}}
-            .stateIn(viewModelScope, SharingStarted.Lazily, null)
+    suspend fun getAlarmById(alarmId: Int): Flow<Alarm?> {
+        return if (alarmId == -1) {
+            flowOf(null) // New alarm case
+        } else {
+            repository.getAlarmById(alarmId) // Fetch from database
+        }
     }
 
 

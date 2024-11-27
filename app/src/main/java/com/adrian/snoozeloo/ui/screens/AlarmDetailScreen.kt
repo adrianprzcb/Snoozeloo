@@ -1,13 +1,17 @@
 package com.adrian.snoozeloo.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,9 +24,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
-import androidx.compose.material3.Chip
+//import androidx.compose.material3.Chip
+import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
+import androidx.compose.ui.Alignment
 import com.adrian.snoozeloo.data.model.Alarm
 import com.adrian.snoozeloo.data.model.AlarmData
+import com.adrian.snoozeloo.ui.components.AlarmNameDialog
 
 @Composable
 fun AlarmDetailScreen(
@@ -82,15 +90,12 @@ fun AlarmDetailScreen(
         }
 
 
-        //Chips for weekdays selection
-        LazyRow (
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            val days = listOf("Mon" , "Tue" , "Thu", "Fri", "Sat", "Sun")
+        // Chips for weekdays selection
+    /*    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
             items(days) { day ->
-
                 Chip(
-                  onClick = {
+                    onClick = {
                         selectedDays = if (selectedDays.contains(day)) {
                             selectedDays - day
                         } else {
@@ -102,18 +107,69 @@ fun AlarmDetailScreen(
                     Text(day)
                 }
             }
+        }*/
+
+        // Ringtone setting card
+        Card(
+            onClick = navigateToRingtoneSettings,
+            modifier = Modifier.fillMaxWidth().clickable { navigateToRingtoneSettings() }
+        ) {
+            Text("Ringtone: $ringtone", modifier = Modifier.padding(16.dp))
         }
 
+        // Volume setting slider
+        Text("Volume: ${volume.toInt()}%")
+        Slider(
+            value = volume,
+            onValueChange = { volume = it },
+            valueRange = 0f..100f,
+            steps = 4,
+            modifier = Modifier.fillMaxWidth()
+        )
 
+        // Vibrate toggle
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Vibrate")
+            Spacer(modifier = Modifier.weight(1f))
+            Switch(checked = vibrate, onCheckedChange = { vibrate = it })
+        }
 
-
-
+        // Save button
+        Button(
+            onClick = {
+                onSaveAlarm(
+                    AlarmData(
+                        hours = hours.toInt(),
+                        minutes = minutes.toInt(),
+                        name = alarmName,
+                        days = selectedDays,
+                        ringtone = ringtone,
+                        volume = volume,
+                        vibrate = vibrate
+                    )
+                )
+            },
+            enabled = isTimeValid
+        ) {
+            Text("Save Alarm")
+        }
     }
 
-
-
+    // Dialog for alarm name input
+    if (isNameDialogVisible) {
+        AlarmNameDialog(
+            initialName = alarmName,
+            onDismiss = { isNameDialogVisible = false },
+            onSave = {
+                alarmName = it
+                isNameDialogVisible = false
+            }
+        )
+    }
 }
-
 
 
 fun validateTime(hours: String, minutes: String): Boolean {

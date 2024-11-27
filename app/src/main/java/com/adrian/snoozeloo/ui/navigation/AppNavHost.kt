@@ -40,12 +40,12 @@ fun AppNavHost(
             )
         ) { backStackEntry ->
             val alarmId = backStackEntry.arguments?.getInt("alarmId") ?: -1
-            val alarmEntity by alarmViewModel.getAlarmById(alarmId).collectAsState(initial = null)
+            val alarmE by alarmViewModel.getAlarmById(alarmId).collectAsState(initial = null)
 
             AlarmDetailScreen(
-                alarm = alarmEntity?.toAlarmData(),
+                alarm = alarmE?.toAlarmData(),
                 onSaveAlarm = { alarmData ->
-                    val alarmToSave = alarmData.toAlarm().copy(id = alarmEntity?.id ?: 0)
+                    val alarmToSave = alarmData.toAlarm().copy(id = alarmE?.id ?: 0)
                     alarmViewModel.saveAlarm(alarmToSave)
                     navController.popBackStack()
                 },

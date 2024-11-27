@@ -33,16 +33,17 @@ fun AppNavHost(
             arguments = listOf(
                 navArgument("alarmId") {
                     type = NavType.IntType
-                    nullable = true // Nullable for creating a new alarm
+                    defaultValue = -1
                 }
             )
         ) { backStackEntry ->
-            val alarmId = backStackEntry.arguments?.getInt("alarmId")
-            val alarm by alarmViewModel.getAlarmById(alarmId ?: -1).collectAsState() // Use -1 as a fallback
+            val alarmId = backStackEntry.arguments?.getInt("alarmId") ?: -1
+            val alarm by alarmViewModel.getAlarmById(alarmId).collectAsState()
+
             AlarmDetailScreen(
-                alarm = alarm,
+                alarm = if (alarmId == -1) null else alarm,
                 onSaveAlarm = { alarmData ->
-                   // alarmViewModel.saveAlarm(alarmData)
+                    alarmViewModel.saveAlarm(alarmData)
                     navController.popBackStack()
                 },
                 navigateToRingtoneSettings = {

@@ -49,7 +49,7 @@ class AlarmViewModel (private val repository: AlarmRepository): ViewModel(){
 
 
     //Get a specific alarm by ID
-    suspend fun getAlarmById(alarmId: Int): Flow<Alarm?> {
+     fun getAlarmById(alarmId: Int): Flow<Alarm?> {
         return if (alarmId == -1) {
             flowOf(null) // New alarm case
         } else {

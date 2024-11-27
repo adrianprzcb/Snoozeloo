@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
+import androidx.compose.material3.Chip
 import com.adrian.snoozeloo.data.model.Alarm
 import com.adrian.snoozeloo.data.model.AlarmData
 
@@ -89,7 +90,7 @@ fun AlarmDetailScreen(
             items(days) { day ->
 
                 Chip(
-                    onClick = {
+                  onClick = {
                         selectedDays = if (selectedDays.contains(day)) {
                             selectedDays - day
                         } else {

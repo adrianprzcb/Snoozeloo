@@ -26,7 +26,7 @@ fun AppNavHost(
         composable("alarm_list") {
          AlarmListScreen(
              alarmViewModel = alarmViewModel,
-             onAddAlarm = {navController.navigate("alarm_detail")}
+             onAddAlarm = {navController.navigate("alarm_detail/-1")}
          )
         }
         // Alarm detail screen for adding or editing

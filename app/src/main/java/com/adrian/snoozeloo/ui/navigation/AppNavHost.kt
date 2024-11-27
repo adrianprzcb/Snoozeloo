@@ -2,6 +2,7 @@ package com.adrian.snoozeloo.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -28,27 +29,27 @@ fun AppNavHost(
         }
         // Alarm detail screen for adding or editing
         composable(
-            route = "alarm_detail",
+            route = "alarm_detail/{alarmId}",
             arguments = listOf(
                 navArgument("alarmId") {
-                    type = NavType.StringType
-                    nullable = true // Allow null for creating a new alarm
-                    defaultValue = null
+                    type = NavType.IntType
+                    nullable = true // Nullable for creating a new alarm
                 }
             )
         ) { backStackEntry ->
-            val alarmId = backStackEntry.arguments?.getString("alarmId")
-            val alarm = alarmViewModel.getAlarmById(alarmId ?: -1).collectAsState()
+            val alarmId = backStackEntry.arguments?.getInt("alarmId")
+            val alarm by alarmViewModel.getAlarmById(alarmId ?: -1).collectAsState() // Use -1 as a fallback
             AlarmDetailScreen(
                 alarm = alarm,
                 onSaveAlarm = { alarmData ->
-                    alarmViewModel.saveAlarm(alarmData)
-                    navController.popBackStack() // Navigate back to the list
+                   // alarmViewModel.saveAlarm(alarmData)
+                    navController.popBackStack()
                 },
                 navigateToRingtoneSettings = {
                     navController.navigate("ringtone_settings")
                 }
             )
         }
+
     }
 }

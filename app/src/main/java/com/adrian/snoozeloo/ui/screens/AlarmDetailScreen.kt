@@ -90,6 +90,7 @@ fun AlarmDetailScreen(
             Text(text = if (alarmName.isNotEmpty()) alarmName else "Set Alarm Name")
         }
 
+        var otherSelected: String? = ""
 
         Text("Select Days:")
         Text("Select Days:")
@@ -113,7 +114,7 @@ fun AlarmDetailScreen(
                     "Only Once" -> {
                         selectedDays = emptyList()
                         // Trigger alarm logic for "Only Once"
-                        setupAlarmForNextDayOrToday()
+                      //  setupAlarmForNextDayOrToday()
                     }
                 }
             }

@@ -172,7 +172,7 @@ fun DaySelectionChips(
     selectedDays: List<String>,
     onDaySelected: (String) -> Unit
 ) {
-    val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+    val days = listOf("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su")
 
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),

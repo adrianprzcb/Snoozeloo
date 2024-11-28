@@ -26,11 +26,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
-import androidx.compose.material3.Text
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.ui.Alignment
-import com.adrian.snoozeloo.data.model.Alarm
 import com.adrian.snoozeloo.data.model.AlarmData
 import com.adrian.snoozeloo.ui.components.AlarmNameDialog
 

@@ -90,28 +90,18 @@ fun AlarmDetailScreen(
         }
 
 
-        // Chips for weekdays selection
-        @Composable
-        fun DaySelectionChips(
-            selectedDays: List<String>,
-            onDaySelected: (String) -> Unit
-        ) {
-            val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.padding(horizontal = 16.dp)
-            ) {
-                items(days) { day ->
-                    FilterChip(
-                        selected = selectedDays.contains(day),
-                        onClick = { onDaySelected(day) },
-                        label = { Text(day) },
-                        modifier = Modifier.padding(vertical = 4.dp)
-                    )
+        Text("Select Days:")
+        DaySelectionChips(
+            selectedDays = selectedDays,
+            onDaySelected = { day ->
+                selectedDays = if (selectedDays.contains(day)) {
+                    selectedDays - day
+                } else {
+                    selectedDays + day
                 }
             }
-        }
+        )
+
 
         // Ringtone setting card
         Card(
@@ -172,6 +162,30 @@ fun AlarmDetailScreen(
                 isNameDialogVisible = false
             }
         )
+    }
+}
+
+
+// Chips for weekdays selection
+@Composable
+fun DaySelectionChips(
+    selectedDays: List<String>,
+    onDaySelected: (String) -> Unit
+) {
+    val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier.padding(horizontal = 16.dp)
+    ) {
+        items(days) { day ->
+            FilterChip(
+                selected = selectedDays.contains(day),
+                onClick = { onDaySelected(day) },
+                label = { Text(day) },
+                modifier = Modifier.padding(vertical = 4.dp)
+            )
+        }
     }
 }
 

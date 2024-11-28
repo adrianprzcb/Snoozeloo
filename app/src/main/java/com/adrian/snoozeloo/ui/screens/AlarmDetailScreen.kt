@@ -45,6 +45,7 @@ fun AlarmDetailScreen(
     var alarmName by remember { mutableStateOf("") }
     var isNameDialogVisible by remember { mutableStateOf(false) }
     var selectedDays by remember { mutableStateOf(listOf<String>()) }
+    var otherSelected by remember { mutableStateOf(listOf<String>()) }
     var ringtone by remember { mutableStateOf("Default Ringtone") }
     var volume by remember { mutableStateOf(50f) }
     var vibrate by remember { mutableStateOf(false) }
@@ -91,6 +92,7 @@ fun AlarmDetailScreen(
 
 
         Text("Select Days:")
+        Text("Select Days:")
         DaySelectionChips(
             selectedDays = selectedDays,
             onDaySelected = { day ->
@@ -98,6 +100,21 @@ fun AlarmDetailScreen(
                     selectedDays - day
                 } else {
                     selectedDays + day
+                }
+                otherSelected = null // Clear "other" selection when individual days are selected
+            },
+            otherSelected = otherSelected,
+            onOtherSelected = { option ->
+                otherSelected = if (otherSelected == option) null else option
+                when (option) {
+                    "Monday to Friday" -> {
+                        selectedDays = listOf("Mo", "Tu", "We", "Th", "Fr")
+                    }
+                    "Only Once" -> {
+                        selectedDays = emptyList()
+                        // Trigger alarm logic for "Only Once"
+                        setupAlarmForNextDayOrToday()
+                    }
                 }
             }
         )
@@ -170,7 +187,9 @@ fun AlarmDetailScreen(
 @Composable
 fun DaySelectionChips(
     selectedDays: List<String>,
-    onDaySelected: (String) -> Unit
+    onDaySelected: (String) -> Unit,
+    otherSelected: String?,
+    onOtherSelected: (String?) -> Unit
 ) {
     val days = listOf("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su")
     val other = listOf("Only Once", "Monday to Friday")
@@ -184,6 +203,22 @@ fun DaySelectionChips(
                 selected = selectedDays.contains(day),
                 onClick = { onDaySelected(day) },
                 label = { Text(day) },
+                modifier = Modifier.padding(vertical = 4.dp)
+            )
+        }
+    }
+
+
+    // Other Options Chips
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        items(other) { option ->
+            FilterChip(
+                selected = otherSelected == option,
+                onClick = { onOtherSelected(option) },
+                label = { Text(option) },
                 modifier = Modifier.padding(vertical = 4.dp)
             )
         }

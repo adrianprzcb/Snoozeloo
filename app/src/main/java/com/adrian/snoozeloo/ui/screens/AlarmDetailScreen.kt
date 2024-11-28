@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
-//import androidx.compose.material3.Chip
+import androidx.compose.material3.Text
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.ui.Alignment
@@ -91,23 +93,27 @@ fun AlarmDetailScreen(
 
 
         // Chips for weekdays selection
-    /*    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        @Composable
+        fun DaySelectionChips(
+            selectedDays: List<String>,
+            onDaySelected: (String) -> Unit
+        ) {
             val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-            items(days) { day ->
-                Chip(
-                    onClick = {
-                        selectedDays = if (selectedDays.contains(day)) {
-                            selectedDays - day
-                        } else {
-                            selectedDays + day
-                        }
-                    },
-                    selected = selectedDays.contains(day)
-                ) {
-                    Text(day)
+
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.padding(horizontal = 16.dp)
+            ) {
+                items(days) { day ->
+                    FilterChip(
+                        selected = selectedDays.contains(day),
+                        onClick = { onDaySelected(day) },
+                        label = { Text(day) },
+                        modifier = Modifier.padding(vertical = 4.dp)
+                    )
                 }
             }
-        }*/
+        }
 
         // Ringtone setting card
         Card(

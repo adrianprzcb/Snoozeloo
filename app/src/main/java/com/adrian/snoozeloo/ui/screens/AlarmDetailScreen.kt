@@ -188,19 +188,7 @@ fun DaySelectionChips(
             )
         }
     }
-    LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.padding(horizontal = 16.dp)
-    ) {
-        items(days) { day ->
-            FilterChip(
-                selected = selectedDays.contains(day),
-                onClick = { onDaySelected(day) },
-                label = { Text(day) },
-                modifier = Modifier.padding(vertical = 4.dp)
-            )
-        }
-    }
+
 }
 
 

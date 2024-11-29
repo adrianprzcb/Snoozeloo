@@ -29,6 +29,7 @@ import androidx.core.text.isDigitsOnly
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.tooling.preview.Preview
 import com.adrian.snoozeloo.data.model.AlarmData
 import com.adrian.snoozeloo.ui.components.AlarmNameDialog
 
@@ -92,7 +93,6 @@ fun AlarmDetailScreen(
 
         var otherSelected: String? = ""
 
-        Text("Select Days:")
         Text("Select Days:")
         DaySelectionChips(
             selectedDays = selectedDays,
@@ -197,7 +197,7 @@ fun DaySelectionChips(
 
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.padding(horizontal = 16.dp)
+        modifier = Modifier.padding(horizontal = 6.dp)
     ) {
         items(days) { day ->
             FilterChip(
@@ -209,11 +209,10 @@ fun DaySelectionChips(
         }
     }
 
-
     // Other Options Chips
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+        modifier = Modifier.padding(horizontal = 6.dp, vertical = 8.dp)
     ) {
         items(other) { option ->
             FilterChip(

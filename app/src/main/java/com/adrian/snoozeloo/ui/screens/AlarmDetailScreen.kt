@@ -104,15 +104,18 @@ fun AlarmDetailScreen(
                 }
                 otherSelected = null // Clear "other" selection when individual days are selected
             },
+
             otherSelected = otherSelected,
             onOtherSelected = { option ->
                 otherSelected = if (otherSelected == option) null else option
                 when (option) {
                     "Monday to Friday" -> {
                         selectedDays = listOf("Mo", "Tu", "We", "Th", "Fr")
+                        otherSelected = "Monday to Friday"
                     }
                     "Only Once" -> {
                         selectedDays = emptyList()
+                        otherSelected = "Only Once"
                         // Trigger alarm logic for "Only Once"
                       //  setupAlarmForNextDayOrToday()
                     }
@@ -192,11 +195,11 @@ fun DaySelectionChips(
     otherSelected: String?,
     onOtherSelected: (String?) -> Unit
 ) {
-    val days = listOf("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su")
+    val days = listOf("M", "Tu", "W", "Th", "F", "Sa", "Su")
     val other = listOf("Only Once", "Monday to Friday")
 
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(1.dp),
         modifier = Modifier.padding(horizontal = 6.dp)
     ) {
         items(days) { day ->

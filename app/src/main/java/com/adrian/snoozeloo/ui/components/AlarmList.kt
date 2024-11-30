@@ -75,11 +75,13 @@ fun AlarmItem(
                         fontSize = 40.sp
                     )
                     Spacer(modifier = Modifier.size(5.dp))
-                    Text(
-                        text = alarm.alarmName ?: "Untitled Alarm",
-                        style = MaterialTheme.typography.titleMedium,
+                    Column {
+                        Text(
+                            text = alarm.alarmName ?: "Untitled Alarm",
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    }
 
-                    )
                 }
 
                 Row(modifier = Modifier.fillMaxWidth()) {

@@ -1,6 +1,5 @@
 package com.adrian.snoozeloo.ui.screens
 
-import android.widget.NumberPicker
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,8 +29,10 @@ import androidx.core.text.isDigitsOnly
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.tooling.preview.Preview
 import com.adrian.snoozeloo.data.model.AlarmData
 import com.adrian.snoozeloo.ui.components.AlarmNameDialog
+import io.github.vanpra.composematerialdialogs.picker.NumberPicker
 
 
 @Composable

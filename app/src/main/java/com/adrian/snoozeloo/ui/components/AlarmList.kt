@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.adrian.snoozeloo.data.model.Alarm
 import java.time.LocalTime
@@ -64,7 +65,7 @@ fun AlarmItem(
             ){
                 Text(
                     text = alarm.time,
-                    style = MaterialTheme.typography.bodyLarge
+                    fontSize = 20.dp
                 )
                 Text(
                     text = alarm.alarmName ?: "Untitled Alarm",

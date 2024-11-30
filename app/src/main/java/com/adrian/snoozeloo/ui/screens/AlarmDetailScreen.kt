@@ -7,13 +7,16 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +32,7 @@ import androidx.core.text.isDigitsOnly
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import com.adrian.snoozeloo.data.model.AlarmData
 import com.adrian.snoozeloo.ui.components.AlarmNameDialog
@@ -237,34 +241,32 @@ fun DaySelectionChips(
 
 
 @Composable
-fun TimePicker(
-    hours: Int,
-    onHoursChange: (Int) -> Unit,
-    minutes: Int,
-    onMinutesChange: (Int) -> Unit
+fun NumberPicker(
+    range: IntRange,
+    selectedValue: Int,
+    onValueChange: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+    textStyle: TextStyle = MaterialTheme.typography.bodyLarge
 ) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly
+    LazyColumn(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(150.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        // Hours Picker
-        NumberPicker(
-            value = hours,
-            onValueChange = onHoursChange,
-            range = 0..23,
-            modifier = Modifier.weight(1f)
-        )
-
-        // Minutes Picker
-        NumberPicker(
-            value = minutes,
-            onValueChange = onMinutesChange,
-            range = 0..59,
-            modifier = Modifier.weight(1f)
-        )
+        items(range.toList()) { value ->
+            Text(
+                text = value.toString(),
+                style = textStyle,
+                modifier = Modifier
+                    .clickable { onValueChange(value) }
+                    .padding(8.dp),
+                color = if (value == selectedValue) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+            )
+        }
     }
 }
-
 
 
 

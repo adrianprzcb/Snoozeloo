@@ -61,7 +61,7 @@ fun AlarmDetailScreen(
     Column (
         modifier = Modifier.fillMaxSize()
             .padding(16.dp),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.spacedBy(5.dp)
     ){
         //Input fields for hours and minutes
         Row(

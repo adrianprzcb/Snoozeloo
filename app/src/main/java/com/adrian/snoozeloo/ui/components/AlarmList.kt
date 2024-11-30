@@ -1,5 +1,6 @@
 package com.adrian.snoozeloo.ui.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -75,7 +76,10 @@ fun AlarmItem(
                         fontSize = 40.sp
                     )
                     Spacer(modifier = Modifier.size(5.dp))
-                    Column {
+                    Column(
+                        verticalArrangement = Arrangement.Bottom
+
+                    ) {
                         Text(
                             text = alarm.alarmName ?: "Untitled Alarm",
                             style = MaterialTheme.typography.titleMedium

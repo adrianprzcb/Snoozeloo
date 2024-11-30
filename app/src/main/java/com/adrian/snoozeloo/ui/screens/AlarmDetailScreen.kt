@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -34,6 +35,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.adrian.snoozeloo.data.model.AlarmData
 import com.adrian.snoozeloo.ui.components.AlarmNameDialog
 
@@ -77,27 +79,29 @@ fun AlarmDetailScreen(
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f).height(120.dp).wrapContentHeight()
             ) {
                 Text("Hours", style = MaterialTheme.typography.labelLarge)
                 NumberPicker(
                     range = 0..23,
                     selectedValue = hours.toIntOrNull() ?: 0,
                     onValueChange = { hours = it.toString() },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.fillMaxWidth(0.8f),
+                    textStyle = MaterialTheme.typography.labelLarge.copy(fontSize = 32.sp)
                 )
             }
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f).height(120.dp).wrapContentHeight()
             ) {
                 Text("Minutes", style = MaterialTheme.typography.labelLarge)
                 NumberPicker(
                     range = 0..59,
                     selectedValue = minutes.toIntOrNull() ?: 0,
                     onValueChange = { minutes = it.toString() },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.fillMaxWidth(0.8f),
+                    textStyle = MaterialTheme.typography.labelLarge.copy(fontSize = 32.sp)
                 )
             }
         }

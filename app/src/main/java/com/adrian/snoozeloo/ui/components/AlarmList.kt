@@ -65,15 +65,10 @@ fun AlarmItem(
             Column (
                 modifier = Modifier.weight(1f)
             ){
-                Row {
-
                     Text(
                         text = alarm.time,
                         fontSize = 20.sp
                     )
-                }
-
-                Row {
                     Text(
                         text = alarm.alarmName ?: "Untitled Alarm",
                         style = MaterialTheme.typography.titleMedium
@@ -82,9 +77,6 @@ fun AlarmItem(
                         text = "Next: $nextOccurrence", //Format this dynamically
                         style = MaterialTheme.typography.bodyMedium
                     )
-                }
-
-
             }
             Switch(
                 checked = alarm.isEnabled,

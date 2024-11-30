@@ -3,7 +3,6 @@ package com.adrian.snoozeloo.ui.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -50,72 +49,42 @@ fun AlarmItem(
     onToggle: (Alarm) -> Unit
 ) {
 
-    val currentTime = LocalTime.now()
+    val currentTime = LocalTime.now() // Get the current time
     val nextOccurrence = calculateNextOccurrence(alarm.time, currentTime)
-
-    Card(
+    Card (
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp) ,
+            .padding(horizontal = 16.dp , vertical = 8.dp) ,
         elevation = CardDefaults.cardElevation(4.dp)
-    ) {
-        Column(
+    ){
+        Row(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(16.dp)
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f) // Weight for time row
-            ) {
-                Text(
-                    text = alarm.time,
-                    fontSize = 24.sp, // Increased font size
-                    modifier = Modifier.padding(start = 8.dp) // Left padding
-                )
-                Spacer(modifier = Modifier.weight(1f)) // Spacer for alignment
+        ){
+            Column (
+                modifier = Modifier.weight(1f)
+            ){
+                    Text(
+                        text = alarm.time,
+                        fontSize = 20.sp
+                    )
+                    Text(
+                        text = alarm.alarmName ?: "Untitled Alarm",
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                        text = "Next: $nextOccurrence", //Format this dynamically
+                        style = MaterialTheme.typography.bodyMedium
+                    )
             }
-            Row(
-                modifier = Modifier.fillMaxWidth() // Full width for next info
-            ) {
-                Text(
-                    text = alarm.alarmName ?: "Untitled Alarm",
-                    style = MaterialTheme.typography.bodySmall // Smaller name
-                )
-                Spacer(modifier = Modifier.weight(1f)) // Spacer for alignment
-                Text(
-                    text = "NEXT",
-                    style = MaterialTheme.typography.bodySmall // Smaller and bold NEXT
-                   // color = MaterialTheme.colors.primary // Adjust color based on theme
-                )
-                Text(
-                    text = nextOccurrence,
-                    style = MaterialTheme.typography.bodySmall // Smaller next occurrence
-                )
-                Spacer(modifier = Modifier.weight(1f)) // Spacer for alignment
-                Text(
-                    text = getDaysForRepeat(alarm), // Get days for repeating alarm
-                    style = MaterialTheme.typography.bodySmall // Smaller days text
-                )
-            }
-            Row( // Added a new row for the switch
-                modifier = Modifier.fillMaxWidth().padding(top = 8.dp) // Add some top padding
-            ) {
-                Switch(
-                    checked = alarm.isEnabled,
-                    onCheckedChange = { onToggle(alarm) }
-                )
-            }
+            Switch(
+                checked = alarm.isEnabled,
+                onCheckedChange = {onToggle(alarm)}
+            )
         }
-    }
-}
 
-// Function to get comma-separated days for repeating alarm (example)
-fun getDaysForRepeat(alarm: Alarm): String {
-    // Implement logic to get recurring days based on alarm.repeat
-    // Example: return if (alarm.isMonday) "Mon" else ""
-    return "Implement logic to get days"
+    }
 }
 
 

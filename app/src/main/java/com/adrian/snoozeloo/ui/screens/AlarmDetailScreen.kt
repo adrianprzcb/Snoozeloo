@@ -200,7 +200,7 @@ fun DaySelectionChips(
 
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(2.dp),
-        modifier = Modifier.padding(horizontal = 1.dp)
+        modifier = Modifier.padding(horizontal = 1.dp, vertical = 0.dp)
     ) {
         items(days) { day ->
             FilterChip(

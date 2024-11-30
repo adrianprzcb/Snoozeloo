@@ -65,6 +65,9 @@ fun AlarmItem(
             Column (
                 modifier = Modifier.weight(1f)
             ){
+                Row(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
                     Text(
                         text = alarm.time,
                         fontSize = 40.sp
@@ -73,10 +76,18 @@ fun AlarmItem(
                         text = alarm.alarmName ?: "Untitled Alarm",
                         style = MaterialTheme.typography.titleMedium
                     )
+                }
+
+                Row(modifier = Modifier.fillMaxWidth()) {
+
+                  //TODO  Text(text = getTextRepeatDays())
                     Text(
                         text = "Next: $nextOccurrence", //Format this dynamically
                         style = MaterialTheme.typography.bodyMedium
                     )
+                }
+
+
             }
             Switch(
                 checked = alarm.isEnabled,

@@ -50,6 +50,8 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.material3) // Check for the latest version
+    implementation (libs.compose.material.dialogs.core)
+
 
 
     // Room dependencies

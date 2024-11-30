@@ -75,19 +75,31 @@ fun AlarmDetailScreen(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            OutlinedTextField(
-                value = hours,
-                onValueChange = {if (it.isDigitsOnly()) hours = it},
-                label = { Text("Hours") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.weight(1f)
-            )
-            OutlinedTextField(
-                value = minutes,
-                onValueChange = {if (it.isDigitsOnly()) minutes = it},
-                label = { Text("Minutes") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-            )
+            ) {
+                Text("Hours", style = MaterialTheme.typography.labelLarge)
+                NumberPicker(
+                    range = 0..23,
+                    selectedValue = hours.toIntOrNull() ?: 0,
+                    onValueChange = { hours = it.toString() },
+                    modifier = Modifier.weight(1f)
+                )
+            }
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.weight(1f)
+            ) {
+                Text("Minutes", style = MaterialTheme.typography.labelLarge)
+                NumberPicker(
+                    range = 0..59,
+                    selectedValue = minutes.toIntOrNull() ?: 0,
+                    onValueChange = { minutes = it.toString() },
+                    modifier = Modifier.weight(1f)
+                )
+            }
         }
 
         // Display next trigger time

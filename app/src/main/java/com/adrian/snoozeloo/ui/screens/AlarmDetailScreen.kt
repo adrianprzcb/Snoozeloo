@@ -210,8 +210,8 @@ fun DaySelectionChips(
             FilterChip(
                 selected = selectedDays.contains(day),
                 onClick = { onDaySelected(day) },
-                label = { Text(day) },
-                modifier = Modifier.padding(vertical = 4.dp)
+                label = { Text(day) }
+                //modifier = Modifier.padding(vertical = 4.dp)
             )
         }
     }
@@ -225,8 +225,8 @@ fun DaySelectionChips(
             FilterChip(
                 selected = otherSelected == option,
                 onClick = { onOtherSelected(option) },
-                label = { Text(option) },
-                modifier = Modifier.padding(vertical = 4.dp)
+                label = { Text(option) }
+                //modifier = Modifier.padding(vertical = 4.dp)
             )
         }
     }

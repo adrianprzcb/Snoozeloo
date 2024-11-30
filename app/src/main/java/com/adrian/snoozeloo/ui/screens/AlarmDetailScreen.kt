@@ -269,6 +269,57 @@ fun NumberPicker(
 }
 
 
+@Composable
+fun TimePicker(
+    selectedHour: Int,
+    onHourChange: (Int) -> Unit,
+    selectedMinute: Int,
+    onMinuteChange: (Int) -> Unit
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        // Hours picker (0-23)
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("Hours", style = MaterialTheme.typography.labelLarge)
+            NumberPicker(
+                range = 0..23,
+                selectedValue = selectedHour,
+                onValueChange = onHourChange,
+                modifier = Modifier.weight(1f)
+            )
+        }
+
+        // Minutes picker (0-59)
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("Minutes", style = MaterialTheme.typography.labelLarge)
+            NumberPicker(
+                range = 0..59,
+                selectedValue = selectedMinute,
+                onValueChange = onMinuteChange,
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+}
+
+@Composable
+@Preview
+fun TimePickerPreview() {
+    var selectedHour by remember { mutableStateOf(12) }
+    var selectedMinute by remember { mutableStateOf(30) }
+
+    TimePicker(
+        selectedHour = selectedHour,
+        onHourChange = { selectedHour = it },
+        selectedMinute = selectedMinute,
+        onMinuteChange = { selectedMinute = it }
+    )
+}
+
+
+
 
 
 fun validateTime(hours: String, minutes: String): Boolean {

@@ -96,7 +96,8 @@ fun AlarmDetailScreen(
 
         var otherSelected: String? = ""
 
-        Text("Select Days:")
+        Text("Select Days:",
+            modifier = Modifier.align(Alignment.Start))
         DaySelectionChips(
             selectedDays = selectedDays,
             onDaySelected = { day ->

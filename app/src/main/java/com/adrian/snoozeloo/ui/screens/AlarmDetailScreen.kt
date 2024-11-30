@@ -199,8 +199,8 @@ fun DaySelectionChips(
     val other = listOf("Only Once", "Monday to Friday")
 
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(1.dp),
-        modifier = Modifier.padding(horizontal = 6.dp)
+        horizontalArrangement = Arrangement.spacedBy(2.dp),
+        modifier = Modifier.padding(horizontal = 1.dp)
     ) {
         items(days) { day ->
             FilterChip(
@@ -215,7 +215,7 @@ fun DaySelectionChips(
     // Other Options Chips
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.padding(horizontal = 6.dp, vertical = 8.dp)
+        modifier = Modifier.padding(horizontal = 0.dp, vertical = 8.dp)
     ) {
         items(other) { option ->
             FilterChip(

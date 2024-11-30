@@ -1,5 +1,6 @@
 package com.adrian.snoozeloo.ui.screens
 
+import android.widget.NumberPicker
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,7 +30,6 @@ import androidx.core.text.isDigitsOnly
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.tooling.preview.Preview
 import com.adrian.snoozeloo.data.model.AlarmData
 import com.adrian.snoozeloo.ui.components.AlarmNameDialog
 
@@ -232,6 +232,40 @@ fun DaySelectionChips(
     }
 
 }
+
+
+
+@Composable
+fun TimePicker(
+    hours: Int,
+    onHoursChange: (Int) -> Unit,
+    minutes: Int,
+    onMinutesChange: (Int) -> Unit
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        // Hours Picker
+        NumberPicker(
+            value = hours,
+            onValueChange = onHoursChange,
+            range = 0..23,
+            modifier = Modifier.weight(1f)
+        )
+
+        // Minutes Picker
+        NumberPicker(
+            value = minutes,
+            onValueChange = onMinutesChange,
+            range = 0..59,
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
+
+
+
 
 
 fun validateTime(hours: String, minutes: String): Boolean {

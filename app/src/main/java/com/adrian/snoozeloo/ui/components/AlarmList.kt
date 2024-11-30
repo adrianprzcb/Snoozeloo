@@ -125,6 +125,7 @@ fun calculateNextOccurrence(alarmTimeString: String, currentTime: LocalTime): St
         ChronoUnit.MINUTES.between(currentTime, alarmTime.plusHours(24))
     }
 
+
     val hours = duration / 60
     val minutes = duration % 60
     return "${hours}h ${minutes}min"

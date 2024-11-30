@@ -82,7 +82,8 @@ fun AlarmItem(
 
                   //TODO  Text(text = getTextRepeatDays())
                     Text(
-                        text = "Texto de Prueba | "
+                        text = "Texto de Prueba | ",
+                        style = MaterialTheme.typography.bodyMedium
                     )
                     Text(
                         text = "Next: $nextOccurrence", //Format this dynamically

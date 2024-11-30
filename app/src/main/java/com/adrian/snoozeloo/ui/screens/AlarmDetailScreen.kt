@@ -138,7 +138,7 @@ fun AlarmDetailScreen(
             value = volume,
             onValueChange = { volume = it },
             valueRange = 0f..100f,
-            steps = 4,
+            steps = 10,
             modifier = Modifier.fillMaxWidth()
         )
 

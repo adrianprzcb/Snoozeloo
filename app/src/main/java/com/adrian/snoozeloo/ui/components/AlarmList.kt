@@ -77,7 +77,8 @@ fun AlarmItem(
                     Spacer(modifier = Modifier.size(5.dp))
                     Text(
                         text = alarm.alarmName ?: "Untitled Alarm",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
+
                     )
                 }
 

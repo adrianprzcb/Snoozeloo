@@ -63,6 +63,10 @@ fun AlarmItem(
                 modifier = Modifier.weight(1f)
             ){
                 Text(
+                    text = alarm.time,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                Text(
                     text = alarm.alarmName ?: "Untitled Alarm",
                     style = MaterialTheme.typography.titleMedium
                 )

@@ -65,7 +65,7 @@ fun AlarmDetailScreen(
     ){
         //Input fields for hours and minutes
         Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.Center
         ) {
             OutlinedTextField(
                 value = hours,

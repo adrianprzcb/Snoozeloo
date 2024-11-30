@@ -195,7 +195,7 @@ fun DaySelectionChips(
     otherSelected: String?,
     onOtherSelected: (String?) -> Unit
 ) {
-    val days = listOf("M", "Tu", "W", "Th", "F", "Sa", "Su")
+    val days = listOf("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su")
     val other = listOf("Only Once", "Monday to Friday")
 
     LazyRow(

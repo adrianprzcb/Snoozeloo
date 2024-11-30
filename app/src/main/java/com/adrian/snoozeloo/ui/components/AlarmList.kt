@@ -67,7 +67,7 @@ fun AlarmItem(
             ){
                     Text(
                         text = alarm.time,
-                        fontSize = 20.sp
+                        fontSize = 40.sp
                     )
                     Text(
                         text = alarm.alarmName ?: "Untitled Alarm",
